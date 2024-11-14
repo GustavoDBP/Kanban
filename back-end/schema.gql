@@ -1,0 +1,82 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ColumnOutput {
+  id: ID!
+  title: String!
+  owner: UserOutput!
+  cards: [CardOutput!]!
+}
+
+type UserOutput {
+  username: ID!
+  columns: [ColumnOutput!]!
+}
+
+type CardOutput {
+  id: ID!
+  title: String!
+  column: ColumnOutput!
+  description: String
+}
+
+type AuthOutput {
+  access_token: String!
+}
+
+type Query {
+  columns: [ColumnOutput!]!
+  user: UserOutput!
+}
+
+type Mutation {
+  addNewColumn(newColumn: NewColumnInput!): ColumnOutput!
+  editColumn(column: EditColumnInput!): ColumnOutput!
+  deleteColumn(column: DeleteColumnInput!): Boolean!
+  addNewUser(newUserDTO: NewUserInput!): UserOutput!
+  addNewCard(newCard: NewCardInput!): CardOutput!
+  editCard(editCard: EditCardInput!): CardOutput!
+  deleteCard(card: DeleteCardInput!): Boolean!
+  login(authInput: AuthInput!): AuthOutput!
+}
+
+input NewColumnInput {
+  title: String!
+}
+
+input EditColumnInput {
+  id: String!
+  title: String!
+}
+
+input DeleteColumnInput {
+  id: String!
+}
+
+input NewUserInput {
+  username: String!
+  password: String!
+}
+
+input NewCardInput {
+  title: String!
+  columnId: String!
+  description: String
+}
+
+input EditCardInput {
+  id: String!
+  title: String!
+  columnId: String!
+  description: String
+}
+
+input DeleteCardInput {
+  id: String!
+}
+
+input AuthInput {
+  username: String!
+  password: String!
+}
